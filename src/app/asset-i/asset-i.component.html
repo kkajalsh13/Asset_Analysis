@@ -1,0 +1,55 @@
+<app-modal></app-modal>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sd-12">
+            <div class="AsserContainer">
+                <h2> Problem Statement</h2>
+                <p>You are considering making an investment in the fixed income market. You have obtained the descriptions of a number of issues from your Bloomberg terminal. Using the information attached assess which bonds you would choose under various criteria.</p>
+                <p>Which bond would you invest in if you:</p>
+                <table style="width: 100%;">
+                    <tr>
+                        <th style="width: 70%;">Questions</th>
+                        <th style="width: 30%;">Answers</th>
+                    </tr>
+                    <tr [style.backgroundColor] ="this.color[k]" *ngFor="let i of Questions; let k = index">
+                        <td>{{i}}</td>
+                        <td id="{{k}}" (drop)="this.drop($event)" (dragover)="this.allowDrop($event)" style="text-align: center;" (click)="select2($event)">{{this.Answers[k]}}</td>
+                    </tr>
+                </table>
+                <div class="Buttons">
+                    <button class="Reset" (click)="reset()">Reset</button>
+                    <button class="Submit" (click)="submit()">Submit</button>
+
+                </div>
+                <p *ngIf="this.ShowScore">Score: {{score}}</p>
+            </div>
+
+        </div>
+    </div>
+    
+        <div class= row>
+            <div class="col-lg-12 col-md-12 col-sd-12">
+                <div class="AsserContainerI">
+                    <h2>Asset Options</h2>
+                    <div class="ImageContainer" [style.marginRight] = "this.Margins[m]" *ngFor="let j of pictures; let m = index">
+                        <p style="font-weight: 600;">{{PictureNames[m]}}</p>
+                        <img id="{{PictureNames[m]}}" name ="{{PictureNames[m]}}" (draggable) = "true" (dragstart)="drag($event)" (click)="select1($event)" src="{{j}}" width="200" height="200" alt="">
+                    </div>
+                    <div class="noteblock">
+                        <span>Note:-</span>
+                        <ol>
+                            <li>Drag images and drop in the anwsers column to mark your answer.</li>
+                            <li> Also you can select an image and click in the anwsers column to mark your answer. </li>
+                            <li>Once done, click submit to see your final score.</li>
+                        </ol>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    
+</div>
+
+
